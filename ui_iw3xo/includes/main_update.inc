@@ -100,8 +100,8 @@
 
     itemDef
     {
-        name                        "github_button"
-        text                        "Github Project"
+        name                        "help_button"
+        text                        "Help"
         style                       WINDOW_STYLE_FILLED
         border                      WINDOW_BORDER_FULL
         borderSize                  0
@@ -124,12 +124,76 @@
         action                      
         {
             play "mouse_click";
-            execnow "iw3xo_github"; // QuickPatch.cpp
+            execnow "help"; // QuickPatch.cpp
         }
         visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
     }
 
     // --------------------------------------------
+
+    itemDef
+    {
+        name                        "radiant_button"
+        text                        "IW3xRadiant Github"
+        style                       WINDOW_STYLE_FILLED
+        border                      WINDOW_BORDER_FULL
+        borderSize                  0
+        background                  iw3xo_mainmenu_highlight
+        foreColor                   1 1 1 0.8
+        backcolor                   0 0 0 0.01
+        borderColor                 0 0 0 0.05
+        outlineColor                0 0 0 0
+        type                        1
+        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+        origin                      61 60
+        style                       1
+        textfont                    UI_FONT_BIG
+        textscale                   0.24
+        textalign                   1
+        textaligny                  17
+        textstyle                   3
+        mouseEnter                  {play "mouse_over";}
+        mouseExit                   {}
+        action                      
+        {
+            play "mouse_click";
+            execnow "iw3xo_radiant_github"; // QuickPatch.cpp
+        }
+        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
+    }
+
+        // --------------------------------------------
+
+    itemDef
+    {
+        name                        "iw3xo_button"
+        text                        "IW3xo Github"
+        style                       WINDOW_STYLE_FILLED
+        border                      WINDOW_BORDER_FULL
+        borderSize                  0
+        background                  iw3xo_mainmenu_highlight
+        foreColor                   1 1 1 0.8
+        backcolor                   0 0 0 0.01
+        borderColor                 0 0 0 0.05
+        outlineColor                0 0 0 0
+        type                        1
+        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+        origin                      -19 60
+        style                       1
+        textfont                    UI_FONT_BIG
+        textscale                   0.24
+        textalign                   1
+        textaligny                  17
+        textstyle                   3
+        mouseEnter                  {play "mouse_over";}
+        mouseExit                   {}
+        action                      
+        {
+            play "mouse_click";
+            execnow "iw3xo_github"; // QuickPatch.cpp
+        }
+        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
+    }
 
 /*     itemDef
     {
