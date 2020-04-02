@@ -1,0 +1,69 @@
+//-//-//-//-//-//-//-//-//-//-//
+// :: Shaders
+
+material,iw3xo_mainmenu_bg
+material,iw3xo_mainmenu_highlight
+material,iw3xo_mainmenu_outline
+
+//-//-//-//-//-//-//-//-//-//-//
+// :: Menus
+
+// empty ui/menu.txt
+menufile,ui_mp/menus.txt  
+
+// to overwrite menus / not load unused ones
+menufile,ui_mp/menus.txt
+
+// ingame menus
+//menufile,ui_mp/ingame.txt    // UUUUUGGLY
+   
+// headers :: really needed here?
+rawfile,ui_iw3xo/headers/menudef.h
+rawfile,ui_iw3xo/headers/menudefinition.h
+rawfile,ui_iw3xo/headers/mainnav.h
+
+// includes
+menufile,ui_iw3xo/includes/bg.inc
+menufile,ui_iw3xo/includes/subnav.inc
+menufile,ui_iw3xo/includes/menustyle.inc
+menufile,ui_iw3xo/includes/serverlist.inc
+menufile,ui_iw3xo/includes/main_content.inc
+menufile,ui_iw3xo/includes/options_container.inc
+menufile,ui_iw3xo/includes/createserver_sd.inc
+
+// templates
+menufile,ui_iw3xo/templates/lnr_setup_common.menu
+menufile,ui_iw3xo/templates/choices_setup_common.menu
+menufile,ui_iw3xo/templates/choices_setup_popmenu.menu
+menufile,ui_iw3xo/templates/options_setup_common.menu
+
+// not needed when menufiles are "included" within the menus.txt
+// menus
+//menufile,ui_iw3xo/main.menu
+//menufile,ui_iw3xo/serverlist.menu
+//menufile,ui_iw3xo/createserver.menu 
+
+//menufile,ui_iw3xo/controls.menu
+//    menufile,ui_iw3xo/controls_look.menu
+//    menufile,ui_iw3xo/controls_move.menu
+//    menufile,ui_iw3xo/controls_shoot.menu
+//    menufile,ui_iw3xo/controls_interact.menu
+//    menufile,ui_iw3xo/controls_multi.menu 
+
+//menufile,ui_iw3xo/options.menu
+//    menufile,ui_iw3xo/options_graphics.menu
+//    menufile,ui_iw3xo/options_sound.menu
+//    menufile,ui_iw3xo/options_voice.menu
+//    menufile,ui_iw3xo/options_game.menu
+
+//menufile,ui_iw3xo/mods.menu
+//menufile,ui_iw3xo/playerprofile.menu
+//menufile,ui_iw3xo/quit.menu
+
+
+
+
+
+
+
+

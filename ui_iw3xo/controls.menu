@@ -1,0 +1,83 @@
+#include "ui_iw3xo/headers/menudef.h"
+#include "ui_iw3xo/includes/common_macro.inc"
+
+#define OPTIONS_STYLE			1
+
+#include "ui_iw3xo/includes/menustyle.inc"
+#include "ui_iw3xo/templates/lnr_setup_common.menu"
+
+#undef CHOICE_X_SPACING
+#define CHOICE_X_SPACING		146 // 96 // plus 1 CHOICE_SIZE_X
+
+#undef CHOICE_X_START
+#define CHOICE_X_START		-((CHOICE_X_SPACING * 3)) // 0
+
+#undef CHOICE_Y_START
+#define CHOICE_Y_START			0
+
+#undef	CHOICE_SIZE_X
+#define CHOICE_SIZE_X		145 // 95
+
+#undef	CHOICE_SIZE_Y
+#define CHOICE_SIZE_Y			25
+
+#undef  SECTION_X_OFFSET
+#define SECTION_X_OFFSET 	0
+
+#undef HIGHLIGHT_BORDER_COLOR
+#define HIGHLIGHT_BORDER_COLOR 1 1 1 0.02
+
+#undef COLOR_FOCUSED
+#define COLOR_FOCUSED	0.80 0.04 0.32 1
+
+#undef CHOICE_HORIZONTAL_ALIGN
+#define CHOICE_HORIZONTAL_ALIGN	HORIZONTAL_ALIGN_CENTER//HORIZONTAL_ALIGN_SUBLEFT
+
+#undef CHOICE_VERTICAL_ALIGN
+#define CHOICE_VERTICAL_ALIGN	VERTICAL_ALIGN_SUBTOP
+
+#define ui_content_controls 1
+
+{
+	menuDef 
+	{
+		name			main_controls
+		fullScreen		0
+		rect        	SUBNAV_MENU_RECT
+		focusColor		COLOR_FOCUSED
+		forecolor		1 1 1 0.04
+		soundloop		""
+		
+		onOpen
+		{
+			setLocalVarBool ui_showApply 0;
+		}
+
+		onClose
+		{ 
+			setLocalVarBool ui_hideBack 0; 
+		}
+		
+		onESC 
+		{ 
+			close self;		
+		}
+
+		// create a subnav bg
+		#include "ui_iw3xo/includes/subnav.inc"
+
+		// using stock menudef names .... because we wont be able to open them in-game otherwise
+		LNR_BUTTON_VIS( 3, "@MENU_LOOK"					, open options_look; 		play "mouse_click"; , 1) // :: menu controls_look
+		LNR_BUTTON_VIS( 4, "@MENU_MOVE"					, open options_move;		play "mouse_click"; , 1) // :: menu controls_move
+		LNR_BUTTON_VIS( 5, "@MENU_COMBAT"				, open options_shoot; 		play "mouse_click"; , 1) // :: menu controls_shoot
+		LNR_BUTTON_VIS( 6, "@MENU_INTERACT"				, open options_misc;		play "mouse_click"; , 1) // :: menu controls_interact
+		//LNR_BUTTON_VIS( 7, "@MENU_MULTIPLAYER_CONTROLS"	, open controls_multi;		play "mouse_click"; , 1) // :: menu controls_multi
+		
+        /* CHOICE_BUTTON( 2, "@MENU_LOOK", LOCAL_CLOSE_ALL_CUSTOM open options_look )
+        CHOICE_BUTTON( 3, "@MENU_MOVE", LOCAL_CLOSE_ALL open options_move )
+        CHOICE_BUTTON( 4, "@MENU_COMBAT", LOCAL_CLOSE_ALL open options_shoot )
+        CHOICE_BUTTON( 5, "@MENU_INTERACT", LOCAL_CLOSE_ALL open options_misc )
+        CHOICE_BUTTON_VIS( 6, "@MENU_MULTIPLAYER_CONTROLS", LOCAL_CLOSE_ALL open controls_multi, when( dvarint( ui_multiplayer ) ) )
+        CHOICE_DBUTTON_VIS( 6, "@MENU_MULTIPLAYER_CONTROLS", when( !dvarint( ui_multiplayer ) ); ) */
+	}
+}	

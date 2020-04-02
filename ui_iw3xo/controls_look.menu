@@ -1,0 +1,63 @@
+// setup choices
+#include "ui_iw3xo/includes/options_menu_setup.inc"
+// redef any options below, if needed
+
+{
+	menuDef
+	{
+		name			"options_look"
+		fullScreen		0
+		rect        	NAV_MENU_FULLSCREEN_RECT
+		focusColor		COLOR_FOCUSED
+		soundloop		""
+		onOpen
+		{
+			CLOSE_ALL_OPTIONS;
+			CLOSE_ALL_CONTROLS_EX_LOOK;
+
+			CLOSE_SERVERBROWSER;
+			CLOSE_CREATE_SERVER;
+			CLOSE_MODS;
+			CLOSE_PROFILE;
+			
+			setLocalVarBool ui_hideBack "0";
+			setLocalVarBool ui_maincontent_lnr "1";
+			setLocalVarBool ui_maincontent_update "1";
+		}
+
+		onClose
+		{
+			setLocalVarBool ui_hideBack 0;
+			setLocalVarBool ui_maincontent_lnr "0";
+			setLocalVarBool ui_maincontent_update "0";
+		}
+
+		onESC
+		{
+			close self;
+		}
+
+		#undef CONTENT_TITLE
+		#define CONTENT_TITLE "@MENU_LOOK"
+		// create container
+		#include "ui_iw3xo/includes/options_container.inc"
+
+
+		CHOICE_DVARYESNO( 1, "@MENU_INVERT_MOUSE", ui_mousePitch, uiScript update ui_mousePitch )
+		CHOICE_BIND( 2, "@MENU_LEAN_LEFT", "+leanleft", ; )
+		CHOICE_BIND( 3, "@MENU_LEAN_RIGHT", "+leanright", ; )
+		CHOICE_BIND( 4, "@MENU_LOOK_UP", "+lookup", ; )
+		CHOICE_BIND( 5, "@MENU_LOOK_DOWN", "+lookdown", ; )
+		CHOICE_BIND( 6, "@MENU_TURN_LEFT", "+left", ; )
+		CHOICE_BIND( 7, "@MENU_TURN_RIGHT", "+right", ; )
+		CHOICE_BIND( 8, "@MENU_MOUSE_LOOK", "+mlook", ; )
+		CHOICE_BIND( 16, "@MENU_CENTER_VIEW", "centerview", ; )
+		CHOICE_DVARYESNO( 17, "@MENU_FREE_LOOK", cl_freelook, ; )
+		CHOICE_DVARYESNO( 18, "@MENU_SMOOTH_MOUSE", m_filter, ; )
+		CHOICE_DVARSLIDER( 19, "@MENU_MOUSE_SENSITIVITY", sensitivity, 5, 1, 30, ; )
+
+		//CHOICE_BACK( "@MENU_BACK", close self )
+
+		//CHOICE_KEYBINDHELP
+	}
+}

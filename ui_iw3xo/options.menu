@@ -1,0 +1,108 @@
+#include "ui_iw3xo/headers/menudef.h"
+#include "ui_iw3xo/includes/common_macro.inc"
+
+#define OPTIONS_STYLE			1
+
+#include "ui_iw3xo/includes/menustyle.inc"
+#include "ui_iw3xo/templates/lnr_setup_common.menu"
+
+#undef CHOICE_X_SPACING
+#define CHOICE_X_SPACING		196 // 96 // plus 1 CHOICE_SIZE_X
+
+#undef CHOICE_X_START
+#define CHOICE_X_START		-((CHOICE_X_SPACING * 2) + (CHOICE_X_SPACING * 0.5)) // * button count - 1
+
+#undef CHOICE_Y_START
+#define CHOICE_Y_START			0
+
+#undef	CHOICE_SIZE_X
+#define CHOICE_SIZE_X		195 // 95
+
+#undef	CHOICE_SIZE_Y
+#define CHOICE_SIZE_Y			25
+
+#undef  SECTION_X_OFFSET
+#define SECTION_X_OFFSET 	0
+
+#undef HIGHLIGHT_BORDER_COLOR
+#define HIGHLIGHT_BORDER_COLOR 1 1 1 0.02
+
+#undef COLOR_FOCUSED
+#define COLOR_FOCUSED	0.80 0.04 0.32 1
+
+#undef CHOICE_HORIZONTAL_ALIGN
+#define CHOICE_HORIZONTAL_ALIGN	HORIZONTAL_ALIGN_CENTER //HORIZONTAL_ALIGN_SUBLEFT
+
+#undef CHOICE_VERTICAL_ALIGN
+#define CHOICE_VERTICAL_ALIGN	VERTICAL_ALIGN_SUBTOP
+
+#define ui_content_controls 1
+
+#undef TEXTSIZE_BUTTON_PC
+#define TEXTSIZE_BUTTON_PC	0.33
+
+#undef CHOICE_X_COUNT
+#define CHOICE_X_COUNT	10 // 10
+
+{
+    menuDef 
+	{
+		name			main_options
+		fullScreen		0
+		rect        	SUBNAV_MENU_RECT
+		focusColor		COLOR_FOCUSED
+		soundloop		""
+		backcolor					1 1 1 0.04
+		onOpen
+		{
+			setLocalVarBool ui_showApply 0;
+			setLocalVarBool ui_showTextureApply 0;
+			//setLocalVarBool ui_hideBack 1;
+			
+			/* setitemcolor fadebox backcolor 0 0 0 1;
+			fadeout fadebox;
+			setdvar g_reloading "0";
+			setLocalVarBool ui_maincontent "0";
+			setLocalVarBool ui_subnav_serverlist "0"
+			execnow "set ui_subnav_serverlist 1" */
+            
+		}
+
+		onClose
+		{ 
+			setLocalVarBool ui_hideBack 0; 
+		}
+
+		onESC 
+		{ 
+			close self;		
+		}
+
+		// create a subnav bg
+		#include "ui_iw3xo/includes/subnav.inc"
+
+		//LNR_BUTTON_VIS( 3, "@MENU_GRAPHICS"				, open options_graphics; 				play "mouse_click"; 	, when( ( !dvarint( sv_running ) || dvarInt( ui_allow_graphic_change ) ) && dvarInt( arcademode ) == 0 ))
+		LNR_BUTTON_VIS( 3, "@MENU_GRAPHICS"				, open options_graphics; 				play "mouse_click"; 	, 1)
+		//LNR_BUTTON_VIS( 3, "@MENU_GRAPHICS"				, open options_graphics; 				play "mouse_click"; 	, when( ( dvarint( sv_running ) && dvarInt(ui_allow_graphic_change)==0 ) || dvarBool( arcademode ) ))
+		//LNR_BUTTON_VIS( 4, "@MENU_TEXTURE_SETTINGS"		, open options_graphics_texture;		play "mouse_click"; 	, when( ( !dvarint( sv_running ) || dvarInt( ui_allow_graphic_change ) ) && dvarInt( arcademode ) == 0 ))
+		//LNR_BUTTON_VIS( 4, "@MENU_TEXTURE_SETTINGS"		, open options_graphics_texture;		play "mouse_click"; 	, 1)
+		//LNR_BUTTON_VIS( 4, "@MENU_TEXTURE_SETTINGS"		, open options_graphics_texture;		play "mouse_click"; 	, when( ( dvarint( sv_running ) && dvarInt(ui_allow_graphic_change)==0 ) || dvarBool( arcademode ) ))
+		LNR_BUTTON_VIS( 4, "@MENU_SOUND"				, open options_sound; 		play "mouse_click"; , 1)
+		//LNR_BUTTON_VIS( 6, "@MENU_VOICECHAT"			, open options_voice;		play "mouse_click"; , 1)
+		LNR_BUTTON_VIS( 5, "@MENU_MULTIPLAYER_OPTIONS"	, open options_game;		play "mouse_click"; , 1) // @MENU_GAME_OPTIONS
+
+		/* CHOICE_BUTTON_VIS( 2, "@MENU_GRAPHICS", LOCAL_CLOSE_ALL open options_graphics, when( ( !dvarint( sv_running ) || dvarInt( ui_allow_graphic_change ) ) && dvarInt( arcademode ) == 0 ); )
+        CHOICE_DBUTTON_VIS( 2, "@MENU_GRAPHICS", when( ( dvarint( sv_running ) && dvarInt(ui_allow_graphic_change)==0 ) || dvarBool( arcademode ) ); )
+        CHOICE_BUTTON_VIS( 3, "@MENU_TEXTURE_SETTINGS", LOCAL_CLOSE_ALL  open options_graphics_texture, when( ( !dvarint( sv_running ) || dvarInt( ui_allow_graphic_change ) ) && dvarInt( arcademode ) == 0 ); )
+        CHOICE_DBUTTON_VIS( 3, "@MENU_TEXTURE_SETTINGS", when( ( dvarint( sv_running ) && dvarInt(ui_allow_graphic_change)==0 ) || dvarBool( arcademode ) ); )
+        CHOICE_BUTTON( 4, "@MENU_SOUND", LOCAL_CLOSE_ALL open options_sound )
+        CHOICE_BUTTON_VIS( 5, "@MENU_VOICECHAT", LOCAL_CLOSE_ALL open options_voice, when( dvarint( ui_multiplayer ) ) )
+        CHOICE_DBUTTON_VIS( 5, "@MENU_VOICECHAT", when( !dvarint( ui_multiplayer ) ); )
+        CHOICE_BUTTON( 6, "@MENU_GAME_OPTIONS", LOCAL_CLOSE_ALL open options_game ) */
+
+        //CHOICE_BUTTON_VIS( 7, "@MENU_CHEATS_LOWCASE", open menu_special_features; close self;, when( dvarBool( sv_running ) && !dvarBool(ui_multiplayer) && !dvarBool( arcademode ) && !dvarBool( arcademode_full ) ); )
+        //CHOICE_BUTTON_VIS( 7, "@MENU_MULTIPLAYER_OPTIONS", LOCAL_CLOSE_ALL open options_multi, when( dvarint( ui_multiplayer ) ) )
+        //CHOICE_DBUTTON_VIS( 7, "@MENU_CHEATS_LOWCASE", when( ( !dvarBool( sv_running ) || dvarBool( arcademode ) || dvarBool( arcademode_full ) ) && !dvarBool(ui_multiplayer) ); )
+
+	}
+}

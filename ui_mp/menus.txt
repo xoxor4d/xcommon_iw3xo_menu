@@ -1,0 +1,62 @@
+// multiplayer menus
+
+{
+ 	loadMenu { "ui_iw3xo/main.menu" }
+
+	loadMenu { "ui_iw3xo/serverlist.menu" }
+		loadMenu { "ui_mp/serverinfo.menu" }
+		loadMenu { "ui_mp/password.menu" }
+		loadMenu { "ui_mp/createfavorite.menu" }
+		loadMenu { "ui_mp/filter.menu" }
+		
+	loadMenu { "ui_iw3xo/createserver.menu" }
+		//loadMenu { "ui_iw3xo/createserver_advanced.menu" }
+		//loadMenu { "ui_mp/settings_quick_war.menu" }
+		//loadMenu { "ui_mp/settings_quick_sd.menu" }
+		//loadMenu { "ui_mp/settings_quick_sab.menu" }
+		//loadMenu { "ui_mp/settings_quick_dom.menu" }
+		////loadMenu { "ui_mp/settings_quick_ctf.menu" }
+		//loadMenu { "ui_mp/settings_quick_dm.menu" }
+		//loadMenu { "ui_mp/settings_quick_koth.menu" }
+
+	loadMenu { "ui_iw3xo/controls.menu" }
+		loadMenu { "ui_iw3xo/controls_look.menu" }
+		loadMenu { "ui_iw3xo/controls_move.menu" }
+		loadMenu { "ui_iw3xo/controls_shoot.menu" }
+		loadMenu { "ui_iw3xo/controls_interact.menu" }
+		//loadMenu { "ui_iw3xo/controls_multi.menu" }
+
+	loadMenu { "ui_iw3xo/options.menu" }
+		loadMenu { "ui_iw3xo/options_graphics.menu" }
+		loadMenu { "ui_iw3xo/options_sound.menu" }
+		//loadMenu { "ui_iw3xo/options_voice.menu" }
+		loadMenu { "ui_iw3xo/options_game.menu" }
+
+	loadMenu { "ui_iw3xo/mods.menu" }
+	loadMenu { "ui_iw3xo/playerprofile.menu" }
+	loadMenu { "ui_iw3xo/quit.menu" }
+
+
+	loadMenu { "ui/error.menu" }  			// untouched
+ 	loadMenu { "ui_mp/vid_restart.menu" }	// untouched
+	loadMenu { "ui/snd_restart.menu" } 		// untouched
+
+/*  
+	loadMenu { "ui/options_control_defaults.menu" }
+	loadMenu { "ui/options_graphics_defaults.menu" } 
+	loadMenu { "ui_mp/auto_update.menu" }
+*/
+
+	/* loadMenu { "ui_mp/cac_assault.menu" }
+	loadMenu { "ui_mp/cac_demolitions.menu" }
+	loadMenu { "ui_mp/cac_heavygunner.menu" }
+	loadMenu { "ui_mp/cac_sniper.menu" }
+	loadMenu { "ui_mp/cac_specops.menu" } */
+	
+	loadMenu { "ui_mp/challenges.menu" }
+
+	loadMenu { "ui_mp/pb_popmenus.menu" }
+	loadMenu { "ui_mp/cdkey.menu" } 
+
+	loadMenu { "ui/language_restart.menu" }
+}
