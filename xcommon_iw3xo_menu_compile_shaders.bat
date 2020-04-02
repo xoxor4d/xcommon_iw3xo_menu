@@ -1,13 +1,14 @@
 @echo off
+set COMPILEDIR=%CD%
 echo.
 echo --------------- Copy shader files to raw ---------------------
-xcopy src\raw\shader_bin ..\..\raw\shader_bin /SYI > NUL
+xcopy src\raw\shader_bin ..\..\raw\shader_bin /SYI
 echo.
-xcopy src\raw\statemap ..\..\raw\statemap /SYI > NUL
+xcopy src\raw\statemaps ..\..\raw\statemaps /SYI
 echo.
-xcopy src\raw\techniques ..\..\raw\techniques /SYI > NUL
+xcopy src\raw\techniques ..\..\raw\techniques /SYI
 echo.
-xcopy src\raw\techsets ..\..\raw\techsets /SYI > NUL
+xcopy src\raw\techsets ..\..\raw\techsets /SYI
 echo.
 
 @echo off
@@ -21,4 +22,5 @@ shader_tool iw3xo_mainmenu_outline
 @echo off
 echo.
 echo --------------------- Done ----------------------------
+cd %COMPILEDIR%
 PAUSE
