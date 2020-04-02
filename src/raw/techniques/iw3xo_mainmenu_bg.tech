@@ -1,0 +1,14 @@
+{
+	stateMap "default2d";
+
+	vertexShader 3.0 iw3xo_mainmenu_bg
+	{
+	}
+
+	pixelShader 3.0 iw3xo_mainmenu_bg
+	{
+	}
+
+	vertex.position = code.position;
+	vertex.texcoord[0] = code.texcoord[0];
+}
