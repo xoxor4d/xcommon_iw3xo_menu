@@ -43,7 +43,7 @@
         borderColor                 1 1 1 1
         outlineColor                0 0 0 0
         textstyle                   ITEM_TEXTSTYLE_SHADOWED
-        exp                         text("huh, so empty. Please fill me up, daddy, please.")//text(dvarstring(ui_changelog));
+        exp                         text(dvarstring(ui_changelog01) + "\n" + dvarstring(ui_changelog02) + "\n" + dvarstring(ui_changelog03) + "\n" + dvarstring(ui_changelog04)); //text("huh, so empty. Please fill me up, daddy, please.")
         textFont                    UI_FONT_BIG
         textAlign                   ITEM_ALIGN_MIDDLE_LEFT
         textAlignX                  10
@@ -125,8 +125,8 @@
         {
             play "mouse_click";
             execnow "help"; // QuickPatch.cpp
-        }
-        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
+        } 
+        visible			when( !localvarint( "ui_maincontent_update" ) == 1);
     }
 
     // --------------------------------------------

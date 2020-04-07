@@ -8,9 +8,6 @@ material,iw3xo_mainmenu_outline
 //-//-//-//-//-//-//-//-//-//-//
 // :: Menus
 
-// empty ui/menu.txt
-menufile,ui_mp/menus.txt  
-
 // to overwrite menus / not load unused ones
 menufile,ui_mp/menus.txt
 

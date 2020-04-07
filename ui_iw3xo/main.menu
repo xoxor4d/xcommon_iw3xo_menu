@@ -20,6 +20,7 @@
 #define ui_maincontent_lnr_X 	0
 #define ui_maincontent_lnr_Y 	0
 #define ui_hideback 			1
+#define link_button_vis 		1
 
 // local option vars
 #define ui_showTextureApply 0
@@ -74,6 +75,7 @@
 			exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow";
 			setLocalVarBool ui_maincontent_lnr 1;
 			setLocalVarBool ui_maincontent_update 1;
+			setLocalVarBool link_button_vis 1;
 		}
 
 		onClose
