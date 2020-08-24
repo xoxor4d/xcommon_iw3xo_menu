@@ -1,10 +1,9 @@
+// * based on https://www.shadertoy.com/view/3t2SzW
+
 #define PC
 #define IS_VERTEX_SHADER 0
 #define IS_PIXEL_SHADER 1
 #include <shader_vars.h>
-
-#define LINES 5.0
-#define BRIGHTNESS 1.8
 
 // our input struct ( same as in vs obv. )
 struct PixelInput
@@ -19,52 +18,50 @@ struct PixelOutput
 	float4 color        : COLOR;
 };
 
-#define FULLSCEEN_ULTRAWIDE     1200.0
+float3 seafloor( in float3 col, in float2 p, in float px, in float t )
+{
+    for( int i = 0; i < 4; i++ )
+    {
+        float h = float(i) / 3.0;
+        float of = -0.4 - 0.4 * h + (0.5 + 0.5 * h) * 0.1 * sin((4.0 - h * 2.0) * p.x + 30.0 * h - 2.5 * t * (1.0 + 2.0 * h));
+        float dof = 2.0;
+		col = lerp( col, float3(0.05, 0.3, 0.5) * (1.0 - 0.9 * h), 1.0 - smoothstep(-px * dof, px * dof, p.y - of) );
+    }
 
-// http://glslsandbox.com/e#56548.0
-// main ps entry, has to return the full output struct ( 1 float4 :: color r g b a )
+    return col;
+}
+
+float3 background( in float2 p )
+{
+    return float3(0.05, 0.3, 0.5) * 0.9 + p.y * 0.11;
+}
+
 PixelOutput ps_main( const PixelInput pixel )
 {
-    // define our output struct as "fragment"
     PixelOutput fragment;
 	
 	float2 mouse = float2(MENU_MOUSEX, MENU_MOUSEY);
-	float time = MENU_TIME;
+	float  time  = MENU_TIME;
 
-	float3 ORANGE = float3(0.4, 0.8, 0.3);
-	float3 BLUE = float3(0.8, 0.8, 0.0);
-	float3 GREEN = float3(0.0, 0.0, 0.0);
-	float3 RED = float3(0.0, 0.0, 0.0);
-	float3 BACKGROUND = float3(1.8, 0.35, 0.295);
+    float2 uv = float2(pixel.texcoord.x * 2.0 - 1., pixel.texcoord.y - 1.25);
+           uv *= 2.0;
+	
+	float2 p = uv;
+    float px = 2.0 / renderTargetSize.y - clamp(((mouse.y - 1.0) * 0.025), -1.0, 0.0);
+    
+    float ani = time * 0.2;
 
-	float x, y, xpos, ypos;
-	float t = MENU_TIME * 2.0;
-	float3 c = float3(0.0, 0.0, 0.0);
-	
-	xpos = pixel.texcoord.x;
-	ypos = pixel.texcoord.y * -1.0f + 1.0f;
-	
-	x = xpos * (1.255);
-	for (float i = 0.0; i < LINES; i += 1.0) 
-	{
-		y = ypos + (
-			0.200 * sin(x * 5.000 + i * 0.4 + t * 0.050) * (mouse.y * 0.5)
-		+ 0.100 * cos(x * 16.350 + i * 0.7 + t * 0.250) * (mouse.x * 0.5)
-		+ 0.084 * sin(x * (FULLSCEEN_ULTRAWIDE) * 2.5 + i * 0.8 + t * 0.134) // renderTargetSize.x
-		+ 0.800
-		);
-		
-		float temp = 1.0 - pow( clamp((1.0 - y) * 20.0, 0.0, 1.0), 0.5 + (cos(t * 0.223) + 1.0) * 3.0 );
-		c += float3(temp,temp,temp) * 0.5;
-	}
-	
-	c *= lerp( lerp(ORANGE, BLUE, xpos)
-				,lerp(GREEN, ORANGE, ypos)
-				,(sin(t * 0.02) + 1.0) * 0.20
-	) * BRIGHTNESS;
-	
-	fragment.color = float4(1.0, 1.0, 1.0, 1.0) - float4(c, 1.0);
-	fragment.color *= float4(BACKGROUND, 1.0);
+    // draw
+    float3 col = background( p );
+           col = seafloor( col, p, px, ani );
+         
+    // vignetting
+	col *= 1.0 - 0.1 * dot(p, p);
+    
+    // gamma
+    col = sqrt(col);
+    
+	fragment.color = float4(col, 1.0);
 	fragment.color.a = 1.0;
 
 	return fragment;

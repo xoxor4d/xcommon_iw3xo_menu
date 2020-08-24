@@ -24,7 +24,7 @@
 #define RECT_MENU_CENTER_W_TOP_H( xOffs, yOffs, newWidth, newHeight ) (320 - (newWidth * 0.5) + xOffs) yOffs newWidth (newHeight - yOffs)
 
 #define FULLSCREEN			    0 0 640 480
-#define FULLSCEEN_ULTRAWIDE     1200
+#define FULLSCEEN_ULTRAWIDE     2000
 #define FULLSCEEN_WIDTH         1000 // total width
 #define FULLSCREEN_HALFWIDTH    (((FULLSCEEN_ULTRAWIDE - 640) / 2) * -1.0)
 //#define FULLSCREEN_WIDE		    FULLSCREEN_HALFWIDTH 0 FULLSCEEN_ULTRAWIDE 480 //-180 0 1000 480 //-107 0 854 480
