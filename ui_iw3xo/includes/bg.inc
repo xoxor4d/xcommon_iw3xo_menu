@@ -13,6 +13,15 @@ itemDef
 	decoration
 }
 
+itemdef
+{
+    rect      		FULLSCREEN_WIDE
+    style     		WINDOW_STYLE_SHADER
+    background		"iw3xo_mainmenu_eyes"
+    visible   		1
+    decoration
+}
+
 /* 
 itemDef
 {

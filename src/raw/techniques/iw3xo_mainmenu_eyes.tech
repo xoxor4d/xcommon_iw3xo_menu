@@ -1,0 +1,13 @@
+{
+	stateMap "default2d";
+
+	vertexShader 3.0 iw3xo_mainmenu_eyes
+	{
+	}
+
+	pixelShader 3.0 iw3xo_mainmenu_eyes
+	{
+	}
+
+	vertex.position = code.position;
+}

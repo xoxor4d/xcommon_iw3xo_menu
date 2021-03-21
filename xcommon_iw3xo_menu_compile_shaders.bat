@@ -18,7 +18,7 @@ cd ..\..\raw\shader_bin
 shader_tool iw3xo_mainmenu_bg
 shader_tool iw3xo_mainmenu_highlight
 shader_tool iw3xo_mainmenu_outline
-
+shader_tool iw3xo_mainmenu_eyes
 @echo off
 echo.
 echo --------------------- Done ----------------------------
