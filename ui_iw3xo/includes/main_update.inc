@@ -1,10 +1,11 @@
+    // _UI::create_changelog uses this itemdef to get the size for ImGui
     itemDef
     {
-        name        				"content_container"
-        rect        				-300 0 600 380 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin      				0 60
+        name        				"changelog_container"
+        rect        				-300 0 600 (380 - 25) HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+        origin      				0 (60 + 25)
         style       				1
-        backcolor   				1 1 1 0.02
+        backcolor   				1 1 1 0.01
         visible						when ( !localvarint( "ui_maincontent_update" ) == 1 )  
         decoration
     }
@@ -17,7 +18,7 @@
         style                       WINDOW_STYLE_FILLED
         borderSize                  0
         foreColor                   1 1 1 1
-        backColor                   1 1 1 0.02
+        backColor                   1 1 1 0.035
         borderColor                 1 1 1 1
         outlineColor                0 0 0 0
 		textstyle 					ITEM_TEXTSTYLE_SHADOWED
@@ -32,7 +33,7 @@
 
     // Changelog element 1
 
-    itemDef
+   /*  itemDef
     {
         name                        "update_changlog01_title"
         rect                        -300 5 600 80 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
@@ -236,20 +237,9 @@
         textScale                   0.25
         visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )         
         decoration                
-    }
+    } */
 
     // ------------
-
-/*     itemDef
-    {   
-        name                        "sep_line"
-        rect                        -295 0 590 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin                      0 410
-        style                       1
-        backcolor                   1 1 1 0.1
-        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )   
-        decoration
-    } */
 
     // --------------------------------------------
 
@@ -267,7 +257,7 @@
         outlineColor                0 0 0 0
         type                        1
         rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin                      221 60
+        origin                      220 60
         style                       1
         textfont                    UI_FONT_DEFAULT
         textscale                   0.24
@@ -279,7 +269,79 @@
         action                      
         {
             play "mouse_click";
-            execnow "loadzone xcommon_iw3xo_menu";
+
+            /*
+            // re-calculate the gui layout
+			GET_GGUI.menus[Game::GUI_MENUS::CHANGELOG].one_time_init = false;
+			Game::Cmd_ExecuteSingleCommand(0, 0, "loadzone xcommon_iw3xo_menu\n");
+            */
+            execnow "mainmenu_reload";
+        }
+        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
+    }
+
+    // --------------------------------------------
+
+    itemDef
+    {
+        name                        "radiant_button"
+        text                        "IW3xRadiant Github"
+        style                       WINDOW_STYLE_FILLED
+        border                      WINDOW_BORDER_FULL
+        borderSize                  0
+        background                  iw3xo_mainmenu_highlight
+        foreColor                   1 1 1 0.8
+        backcolor                   0 0 0 0.01
+        borderColor                 0 0 0 0.05
+        outlineColor                0 0 0 0
+        type                        1
+        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+        origin                      140 60 // 61 60
+        style                       1
+        textfont                    UI_FONT_DEFAULT
+        textscale                   0.24
+        textalign                   1
+        textaligny                  17
+        textstyle                   3
+        mouseEnter                  {play "mouse_over";}
+        mouseExit                   {}
+        action                      
+        {
+            play "mouse_click";
+            execnow "iw3xo_radiant_github"; // QuickPatch.cpp
+        }
+        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
+    }
+
+    // --------------------------------------------
+
+    itemDef
+    {
+        name                        "iw3xo_button"
+        text                        "IW3xo Github"
+        style                       WINDOW_STYLE_FILLED
+        border                      WINDOW_BORDER_FULL
+        borderSize                  0
+        background                  iw3xo_mainmenu_highlight
+        foreColor                   1 1 1 0.8
+        backcolor                   0 0 0 0.01
+        borderColor                 0 0 0 0.05
+        outlineColor                0 0 0 0
+        type                        1
+        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+        origin                      60 60 //-19 60
+        style                       1
+        textfont                    UI_FONT_DEFAULT
+        textscale                   0.24
+        textalign                   1
+        textaligny                  17
+        textstyle                   3
+        mouseEnter                  {play "mouse_over";}
+        mouseExit                   {}
+        action                      
+        {
+            play "mouse_click";
+            execnow "iw3xo_github"; // QuickPatch.cpp
         }
         visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
     }
@@ -300,7 +362,7 @@
         outlineColor                0 0 0 0
         type                        1
         rect                        0 0 60 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin                      1 60 // 141 60
+        origin                      0 60 // 141 60
         style                       1
         textfont                    UI_FONT_DEFAULT
         textscale                   0.24
@@ -315,72 +377,6 @@
             execnow "help"; // QuickPatch.cpp
         } 
         visible			when( !localvarint( "ui_maincontent_update" ) == 1);
-    }
-
-    // --------------------------------------------
-
-    itemDef
-    {
-        name                        "radiant_button"
-        text                        "IW3xRadiant Github"
-        style                       WINDOW_STYLE_FILLED
-        border                      WINDOW_BORDER_FULL
-        borderSize                  0
-        background                  iw3xo_mainmenu_highlight
-        foreColor                   1 1 1 0.8
-        backcolor                   0 0 0 0.01
-        borderColor                 0 0 0 0.05
-        outlineColor                0 0 0 0
-        type                        1
-        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin                      141 60 // 61 60
-        style                       1
-        textfont                    UI_FONT_DEFAULT
-        textscale                   0.24
-        textalign                   1
-        textaligny                  17
-        textstyle                   3
-        mouseEnter                  {play "mouse_over";}
-        mouseExit                   {}
-        action                      
-        {
-            play "mouse_click";
-            execnow "iw3xo_radiant_github"; // QuickPatch.cpp
-        }
-        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
-    }
-
-        // --------------------------------------------
-
-    itemDef
-    {
-        name                        "iw3xo_button"
-        text                        "IW3xo Github"
-        style                       WINDOW_STYLE_FILLED
-        border                      WINDOW_BORDER_FULL
-        borderSize                  0
-        background                  iw3xo_mainmenu_highlight
-        foreColor                   1 1 1 0.8
-        backcolor                   0 0 0 0.01
-        borderColor                 0 0 0 0.05
-        outlineColor                0 0 0 0
-        type                        1
-        rect                        0 0 80 25 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
-        origin                      61 60 //-19 60
-        style                       1
-        textfont                    UI_FONT_DEFAULT
-        textscale                   0.24
-        textalign                   1
-        textaligny                  17
-        textstyle                   3
-        mouseEnter                  {play "mouse_over";}
-        mouseExit                   {}
-        action                      
-        {
-            play "mouse_click";
-            execnow "iw3xo_github"; // QuickPatch.cpp
-        }
-        visible                     when ( !localvarint( "ui_maincontent_update" ) == 1 )
     }
 
 /*     itemDef
