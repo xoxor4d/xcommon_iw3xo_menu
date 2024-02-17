@@ -40,7 +40,8 @@
 			CLOSE_CREATE_SERVER;
 			CLOSE_MODS;
 			CLOSE_PROFILE;
-
+			CLOSE_ALL_CAC;
+			
 			uiScript 	UpdateFilter;
 			
 			// disable main content

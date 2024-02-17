@@ -67,7 +67,8 @@
 			CLOSE_ALL_OPTIONS;
 			CLOSE_MODS;
 			CLOSE_PROFILE;
-
+			CLOSE_ALL_CAC;
+			
 			// disable main content
 			setLocalVarBool ui_maincontent_lnr "1";
 			setLocalVarBool ui_maincontent_update "1";

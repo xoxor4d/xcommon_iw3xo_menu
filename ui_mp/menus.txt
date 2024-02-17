@@ -47,11 +47,12 @@
 	loadMenu { "ui_mp/auto_update.menu" }
 */
 
-	/* loadMenu { "ui_mp/cac_assault.menu" }
-	loadMenu { "ui_mp/cac_demolitions.menu" }
-	loadMenu { "ui_mp/cac_heavygunner.menu" }
-	loadMenu { "ui_mp/cac_sniper.menu" }
-	loadMenu { "ui_mp/cac_specops.menu" } */
+	loadMenu { "ui_iw3xo/cac.menu" }
+	loadMenu { "ui_iw3xo/cac_assault.menu" }
+	loadMenu { "ui_iw3xo/cac_demolitions.menu" }
+	loadMenu { "ui_iw3xo/cac_heavygunner.menu" }
+	loadMenu { "ui_iw3xo/cac_sniper.menu" }
+	loadMenu { "ui_iw3xo/cac_specops.menu" }
 	
 	loadMenu { "ui_mp/challenges.menu" }
 

@@ -16,14 +16,21 @@
 #undef  CHOICE_Y_START
 #define CHOICE_Y_START				348
 
+#define XOFFS 						-160
+#define YOFFS 						-14
+#define WIDTH						320
+#define HEIGHT						320
+#define HEIGHT_OFFSET_LAST_LINE 	60
 {
 	menuDef 
 	{
 		name 			"mods_menu"
 		fullscreen		0
-		rect        	NAV_MENU_FULLSCREEN_RECT
+		rect        	RECT_MENU_CENTER_W_TOP_H(-160, (MAINNAV_HEIGHT + MAINNAV_SEP_HEIGHT + SUBNAV_HEIGHT), 320, 480 )
 		focuscolor		COLOR_FOCUSED
-		style			1
+
+		//style			1
+		//backcolor		0 1 0 0.3
 		
 		onOpen
 		{
@@ -31,18 +38,21 @@
 			CLOSE_ALL_CONTROLS;
 			CLOSE_ALL_OPTIONS;
 			CLOSE_CREATE_SERVER;
-			CLOSE_PROFILE;
+			//CLOSE_PROFILE;
+			CLOSE_ALL_CAC;
 
 			setLocalVarBool ui_hideBack 0;
 			setLocalVarBool ui_maincontent_lnr "1";
 			setLocalVarBool ui_maincontent_update "1";
 			
 			uiScript loadMods;
+			//open player_profile;
 		}
 
 		onClose
 		{
 			setLocalVarBool ui_hideBack 0;
+			//CLOSE_PROFILE;
 		}
 
 		onESC
@@ -50,6 +60,7 @@
 			close self;
 			setLocalVarBool ui_maincontent_lnr "0";
 			setLocalVarBool ui_maincontent_update "0";
+			CLOSE_PROFILE;
 		}
 
 
@@ -60,12 +71,13 @@
         itemdef
         {
             name                        "content"
-            rect                        -167 0 337 340 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+            rect                        (XOFFS-160) YOFFS (WIDTH-3) (HEIGHT+HEIGHT_OFFSET_LAST_LINE) HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
             origin                      0 30
             style                       WINDOW_STYLE_FILLED
             backcolor                   1 1 1 0.03 //0 0 0 0.25
             forecolor                   1 1 1 1 
             visible                     1
+			mouseEnter					{ setfocus modlist; }
             decoration
         }
 
@@ -77,7 +89,7 @@
         itemDef
         {
             name                        "content_title"
-            rect                        -167 0 337 30 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+            rect                        (XOFFS-160) YOFFS (WIDTH-3) 30 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
             origin                      0 30
             style                       WINDOW_STYLE_FILLED
             borderSize                  0
@@ -97,7 +109,7 @@
 		itemDef 
 		{
 			name				modlist
-			rect				-170 60 340 280 HORIZONTAL_ALIGN_CENTER CHOICE_VERTICAL_ALIGN
+			rect				(XOFFS-163) (YOFFS+60) (WIDTH) HEIGHT HORIZONTAL_ALIGN_CENTER CHOICE_VERTICAL_ALIGN
 			type				ITEM_TYPE_LISTBOX
 			style				WINDOW_STYLE_FILLED
 			textstyle 			ITEM_TEXTSTYLE_SHADOWED
@@ -116,14 +128,14 @@
 			visible 			MENU_TRUE
 			action				{ show accept; }
 			doubleClick			{ play "mouse_click"; uiScript RunMod; }
-			//mouseEnter		{ show floater_message }
+			mouseEnter			{ setfocus modlist; }
 			//mouseExit			{ hide floater_message } 
 		}
 
 		itemDef
 		{   
 			name                        "sep_line"
-			rect                        -167 340 337 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
+			rect                        (XOFFS-160) (YOFFS+(HEIGHT+HEIGHT_OFFSET_LAST_LINE)) (WIDTH-3) 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_SUBTOP
 			origin                      0 0
 			style                       1
 			backcolor                   1 1 1 0.03
@@ -140,7 +152,7 @@
 			borderSize                  1
 			background                  iw3xo_mainmenu_outline
 			type                        1
-			rect                        -161 344 130 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+			rect                        (XOFFS-141) (YOFFS+(HEIGHT+HEIGHT_OFFSET_LAST_LINE+4)) 130 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
 			origin                      0 0
 			style                       1
 			forecolor                   1 1 1 1
@@ -155,11 +167,11 @@
 		{
 			name				launchWithoutMods
 			text				"@MENU_LAUNCH_WITHOUT_MODS"
-			type				1
+			type				ITEM_TYPE_BUTTON
 			style               WINDOW_STYLE_FILLED
 			background          iw3xo_mainmenu_highlight
 			textstyle			ITEM_TEXTSTYLE_SHADOWED
-			rect				-160 345 130 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+			rect				(XOFFS-140) (YOFFS+(HEIGHT+HEIGHT_OFFSET_LAST_LINE+5)) 130 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
 			textalign			ITEM_ALIGN_CENTER
 			textalignx			0
 			textaligny			16
@@ -183,7 +195,7 @@
 			borderSize                  1
 			background                  iw3xo_mainmenu_outline
 			type                        1
-			rect                        84 344 80 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+			rect                        (XOFFS+70) (YOFFS+(HEIGHT+HEIGHT_OFFSET_LAST_LINE+4)) 80 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
 			origin                      0 0
 			style                       1
 			forecolor                   1 1 1 1
@@ -196,12 +208,13 @@
 
 		itemDef 
 		{
+			type				ITEM_TYPE_BUTTON
 			name				accept
 			text				"@MENU_LAUNCH"
 			style               WINDOW_STYLE_FILLED
 			background          iw3xo_mainmenu_highlight
 			textstyle			ITEM_TEXTSTYLE_SHADOWED
-			rect				85 345 80 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+			rect				(XOFFS+71) (YOFFS+(HEIGHT+HEIGHT_OFFSET_LAST_LINE+5)) 80 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
 			textalign			ITEM_ALIGN_CENTER
 			textalignx			0
 			textaligny			16

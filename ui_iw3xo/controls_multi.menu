@@ -37,7 +37,8 @@
 			CLOSE_CREATE_SERVER;
 			CLOSE_MODS;
 			CLOSE_PROFILE;
-
+			CLOSE_ALL_CAC;
+			
 			exec "setfromdvar ui_name name";
 
 			setLocalVarBool ui_hideBack "0";

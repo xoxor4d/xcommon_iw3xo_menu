@@ -1,0 +1,76 @@
+#include "ui_iw3xo/headers/menudef.h"
+#include "ui_iw3xo/includes/common_macro.inc"
+
+#define OPTIONS_STYLE			1
+
+#include "ui_iw3xo/includes/menustyle.inc"
+#include "ui_iw3xo/templates/lnr_setup_common.menu"
+
+#undef CHOICE_X_SPACING
+#define CHOICE_X_SPACING		106 // plus 1 CHOICE_SIZE_X
+
+#undef CHOICE_X_START
+#define CHOICE_X_START		-((CHOICE_X_SPACING * 2.5)) // 0
+
+#undef CHOICE_Y_START
+#define CHOICE_Y_START			0
+
+#undef	CHOICE_SIZE_X
+#define CHOICE_SIZE_X			105
+
+#undef	CHOICE_SIZE_Y
+#define CHOICE_SIZE_Y			25
+
+#undef  SECTION_X_OFFSET
+#define SECTION_X_OFFSET 	0
+
+#undef HIGHLIGHT_BORDER_COLOR
+#define HIGHLIGHT_BORDER_COLOR 1 1 1 0.02
+
+#undef COLOR_FOCUSED
+#define COLOR_FOCUSED	0.80 0.04 0.32 1
+
+#undef CHOICE_HORIZONTAL_ALIGN
+#define CHOICE_HORIZONTAL_ALIGN	HORIZONTAL_ALIGN_CENTER//HORIZONTAL_ALIGN_SUBLEFT
+
+#undef CHOICE_VERTICAL_ALIGN
+#define CHOICE_VERTICAL_ALIGN	VERTICAL_ALIGN_SUBTOP
+
+#define ui_content_controls 1
+
+{
+	menuDef 
+	{
+		name			main_cac
+		fullScreen		0
+		rect        	SUBNAV_MENU_RECT
+		focusColor		COLOR_FOCUSED
+		forecolor		1 1 1 0.04
+		soundloop		""
+		
+		onOpen
+		{
+			setLocalVarBool ui_showApply 0;
+		}
+
+		onClose
+		{ 
+			setLocalVarBool ui_hideBack 0; 
+		}
+		
+		onESC 
+		{ 
+			close self;		
+		}
+
+		// create a subnav bg
+		#include "ui_iw3xo/includes/subnav.inc"
+
+		// using stock menudef names .... because we wont be able to open them in-game otherwise
+		LNR_BUTTON_VIS( 2, dvarString(customclass1)		, open "menu_cac_assault"; 		setLocalVarBool ui_maincontent_update "1"; 								play "mouse_click"; , 1)
+		LNR_BUTTON_VIS( 3, dvarString(customclass2)		, open "menu_cac_specops"; 		setLocalVarBool ui_maincontent_update "1"; 	exec "statset 210 1";		play "mouse_click"; , 1)
+		LNR_BUTTON_VIS( 4, dvarString(customclass3)		, open "menu_cac_heavygunner"; 	setLocalVarBool ui_maincontent_update "1"; 	exec "statset 220 1"; 		play "mouse_click"; , 1) 
+		LNR_BUTTON_VIS( 5, dvarString(customclass4)		, open "menu_cac_demolitions";	setLocalVarBool ui_maincontent_update "1"; 	exec "statset 230 1";		play "mouse_click"; , 1)
+		LNR_BUTTON_VIS( 6, dvarString(customclass5)		, open "menu_cac_sniper"; 		setLocalVarBool ui_maincontent_update "1";	exec "statset 240 1";		play "mouse_click"; , 1)
+	}
+}	

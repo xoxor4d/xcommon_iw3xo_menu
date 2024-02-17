@@ -61,7 +61,8 @@
 /// close all subnav menus
 #define CLOSE_ALL_SUBNAVS       close main_controls; \
                                 close main_options; \
-                                close serverlist_subnav
+                                close serverlist_subnav; \
+								close main_cac
 
 /// close serverbrowser
 #define CLOSE_SERVERBROWSER     close serverlist_browser; \
@@ -157,6 +158,38 @@
                                             close options_sound; \
                                             close options_voice; \
                                             close options_game
+
+/// close all cac menus
+#define CLOSE_ALL_CAC 			close menu_cac_assault; \
+								close menu_cac_demolitions; \
+								close menu_cac_heavygunner; \
+								close menu_cac_sniper; \
+								close menu_cac_specops
+
+#define CLOSE_ALL_CAC_EX_ASS 	close menu_cac_demolitions; \
+								close menu_cac_heavygunner; \
+								close menu_cac_sniper; \
+								close menu_cac_specops
+
+#define CLOSE_ALL_CAC_EX_DEM 	close menu_cac_assault; \
+								close menu_cac_heavygunner; \
+								close menu_cac_sniper; \
+								close menu_cac_specops
+
+#define CLOSE_ALL_CAC_EX_HEV 	close menu_cac_assault; \
+								close menu_cac_demolitions; \
+								close menu_cac_sniper; \
+								close menu_cac_specops
+
+#define CLOSE_ALL_CAC_EX_SNI 	close menu_cac_assault; \
+								close menu_cac_demolitions; \
+								close menu_cac_heavygunner; \
+								close menu_cac_specops
+
+#define CLOSE_ALL_CAC_EX_SPE 	close menu_cac_assault; \
+								close menu_cac_demolitions; \
+								close menu_cac_heavygunner; \
+								close menu_cac_sniper
 
 /// close mods
 #define CLOSE_MODS              close mods_menu        

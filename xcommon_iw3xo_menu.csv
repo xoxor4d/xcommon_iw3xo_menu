@@ -34,6 +34,9 @@ menufile,ui_iw3xo/templates/choices_setup_common.menu
 menufile,ui_iw3xo/templates/choices_setup_popmenu.menu
 menufile,ui_iw3xo/templates/options_setup_common.menu
 
+// :>
+sound,nv,,menu
+
 // not needed when menufiles are "included" within the menus.txt
 // menus
 //menufile,ui_iw3xo/main.menu

@@ -19,7 +19,8 @@
 			CLOSE_CREATE_SERVER;
 			CLOSE_MODS;
 			CLOSE_PROFILE;
-
+			CLOSE_ALL_CAC;
+			
 			setLocalVarBool ui_hideBack "0";
 			setLocalVarBool ui_maincontent_lnr "1";
 			setLocalVarBool ui_maincontent_update "1";

@@ -20,12 +20,30 @@ struct PixelOutput
 
 float3 seafloor( in float3 col, in float2 p, in float px, in float t )
 {
-    for( int i = 0; i < 4; i++ )
+	bool is_rtx_active = filterTap[4][0] == 1.0f;
+
+	float3 wcol = float3(0.05f, 0.3f, 0.5f);
+	if (is_rtx_active)
+	{
+		wcol = float3(0.43f, 0.94f, 0.0f);
+	}
+
+    for ( int i = 0; i < 4; i++ )
     {
-        float h = float(i) / 3.0;
-        float of = -0.4 - 0.4 * h + (0.5 + 0.5 * h) * 0.1 * sin((4.0 - h * 2.0) * p.x + 30.0 * h - 2.5 * t * (1.0 + 2.0 * h));
-        float dof = 2.0;
-		col = lerp( col, float3(0.05, 0.3, 0.5) * (1.0 - 0.9 * h), 1.0 - smoothstep(-px * dof, px * dof, p.y - of) );
+		float h; 
+
+		if (is_rtx_active)
+		{
+			h = float(i) / 2.705f;
+		}
+		else
+		{
+			h = float(i) / 3.0f;
+		}
+
+        float of = -0.4f - 0.4f * h + (0.5f + 0.5f * h) * 0.1f * sin((4.0f - h * 2.0f) * p.x + 30.0f * h - 2.5f * t * (1.0f + 2.0f * h));
+        float dof = 0.25f;
+		col = lerp( col, wcol * (1.0f - 0.9f * h), 1.0f - smoothstep(-px * dof, px * dof, p.y - of) );
     }
 
     return col;
@@ -33,7 +51,7 @@ float3 seafloor( in float3 col, in float2 p, in float px, in float t )
 
 float3 background( in float2 p )
 {
-    return float3(0.05, 0.3, 0.5) * 0.9 + p.y * 0.11;
+	return float3(0.05f, 0.3f, 0.5f) * 0.9f + p.y * 0.11f;
 }
 
 PixelOutput ps_main( const PixelInput pixel )
@@ -43,26 +61,26 @@ PixelOutput ps_main( const PixelInput pixel )
 	float2 mouse = float2(MENU_MOUSEX, MENU_MOUSEY);
 	float  time  = MENU_TIME;
 
-    float2 uv = float2(pixel.texcoord.x * 2.0 - 1., pixel.texcoord.y - 1.25);
-           uv *= 2.0;
+    float2 uv = float2(pixel.texcoord.x * 2.0f - 1.0f, pixel.texcoord.y - 1.25f);
+           uv *= 2.0f;
 	
 	float2 p = uv;
-    float px = 2.0 / renderTargetSize.y - clamp(((mouse.y - 1.0) * 0.025), -1.0, 0.0);
+    float px = 2.0f / renderTargetSize.y - clamp(((mouse.y - 1.0f) * 0.025f), -1.0f, 0.0f);
     
-    float ani = time * 0.2;
+    float ani = time * 0.2f;
 
     // draw
     float3 col = background( p );
            col = seafloor( col, p, px, ani );
          
     // vignetting
-	col *= 1.0 - 0.1 * dot(p, p);
+	col *= 1.0f - 0.1f * dot(p, p);
     
     // gamma
     col = sqrt(col);
     
-	fragment.color = float4(col, 1.0);
-	fragment.color.a = 1.0;
+	fragment.color = float4(col, 1.0f);
+	fragment.color.a = 1.0f;
 
 	return fragment;
 }
